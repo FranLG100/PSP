@@ -1,0 +1,2 @@
+Introduzca una cadena
+Cadena escrita: Hola Fran, estoy entrando desde el bat
