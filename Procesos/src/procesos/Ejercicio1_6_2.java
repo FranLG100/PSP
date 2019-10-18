@@ -15,11 +15,12 @@ public class Ejercicio1_6_2 {
 		pb.directory(directorio);
 		Process p=pb.start();
 		
+		//Le escribimos, con el write, los parametros que le vamos a meter al proceso para que ejecute la suma
 		OutputStream os=p.getOutputStream();
-		os.write("4\n9\n".getBytes());
+		os.write("3\n9\n".getBytes());
 		os.flush(); //Para vaciar el buffer de salida
 		
-		//lectura -- obtiene la salida de DATE
+		//lectura -- obtiene la salida del proceso Ejercicio1_6
 		InputStream is=p.getInputStream();
 		int c;
 		while((c=is.read())!=-1)

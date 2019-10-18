@@ -7,19 +7,20 @@ public class Ejercicio1_5 {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		//File directorio = new File(".\\bin\\procesos");
-		
-				//ProcessBuilder pb=new ProcessBuilder("CMD","/C","DIRR");
+
+				//Creamos el proceso, pero no le ponemos la direccion (directorio)
 				ProcessBuilder pb=new ProcessBuilder("java","procesos.LeerNombreEjecucion");
 				//pb.directory(directorio);
 				
-				/*Lo que nos aparecería por pantalla al ejecutar un programa de java que
-				 * no existe, sería : 'No se ha encontrado o cargado la clase principal (nombre)*/
+				
 				
 				Process p=pb.start();
 				
 				int exitVal;
 				try {
+					//Capturamos el error
+					/*Lo que nos aparecera por pantalla al ejecutar un programa de java que
+					 * no existe, sera : 'No se ha encontrado o cargado la clase principal (nombre)*/
 					InputStream is= p.getErrorStream();
 					int c;
 					while((c=is.read())!=-1)
