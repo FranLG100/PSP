@@ -2,6 +2,8 @@ package ejerciciostema2;
 
 public class Ejercicio2_2_Hilo2 implements Runnable {
 	
+	//Es como el ejercicio anterior, solo que con Runnable
+	
 	//Implementamos el run del hilo
 	public void run() {
 		//El hilo se ejecutara con duracion indefinida

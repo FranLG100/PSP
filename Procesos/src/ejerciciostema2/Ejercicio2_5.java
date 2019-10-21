@@ -9,7 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Ejercicio2_5 extends Applet implements ActionListener {
-	
+	//Este es parecido al ejercicio 3
+	//Solo que no vamos a pararlo con stop, sino con otros dos medios distintos.
 	class HiloContador extends Thread {
 		
 		boolean parar;
@@ -22,13 +23,18 @@ public class Ejercicio2_5 extends Applet implements ActionListener {
 		public void run() {
 			// TODO Auto-generated method stub
 			parar=false;
-			while(!parar) {
+			//while(!parar) { //Descomentar para usar con booleano
+			//En este caso vamos a finalizar el hilo interrumpiendolo
+			while(!isInterrupted()) {
 				try {
 					Thread.sleep(300);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					System.out.println("INTERRUPCION");
+					Thread.currentThread().interrupt(); //Lo terminamos de interrumpir aqui
+					//Cuando esta durmiendo, no podemos interrumpirlo.
+					//De esta forma, nos aseguramos.
 				}
 				repaint();
 				CONTADOR++;
@@ -45,7 +51,7 @@ public class Ejercicio2_5 extends Applet implements ActionListener {
 		}
 		
 		public void interrumpir() {
-			this.interrupt();
+			interrupt();
 		}
 	}
 
@@ -82,12 +88,12 @@ public class Ejercicio2_5 extends Applet implements ActionListener {
 		// TODO Auto-generated method stub
 		if(e.getSource()==b1) {
 			b1.setLabel("Hilo 1 Finalizado");
-			//h1.interrumpir();
-			h1.setParar();
+			h1.interrupt();
+			//h1.setParar();
 		}else {
 			b2.setLabel("Hilo 2 Finalizado");
-			h2.setParar();
-			//h2.interrumpir();		
+			//h2.setParar();
+			h2.interrumpir();		
 			}
 	}
 	
