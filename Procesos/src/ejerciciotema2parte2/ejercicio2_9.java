@@ -16,7 +16,8 @@ public class ejercicio2_9 {
 		
 		//El 100 por 100 de los intentos que he probado, sale el resultado deseado
 		//Puede ser casualidad, o que funcione.
-		//Aun asi, creo que es mas seguro usar wait y notify para esto
+		//Aun asi, creo que es mas seguro usar wait y notify para esto que ponerle un poco
+		//mas de sleep al hilo consumidor
 	}
 
 }

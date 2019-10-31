@@ -12,24 +12,33 @@ public class ejercicio2_7 {
 		Contador contS=new Contador(0);
 		Contador contR=new Contador(0);
 		Contador contRS=new Contador(0);
+		
+		//Hilos que incrementan un contador, sin control ninguno.
 		HiloA a1=new HiloA("Hilo A1",cont);
 		HiloA a2=new HiloA("Hilo A2",cont);
 		HiloA a3=new HiloA("Hilo A3",cont);
 		HiloA a4=new HiloA("Hilo A4",cont);
 		HiloA a5=new HiloA("Hilo A5",cont);
 		
+		//Hilos que incrementan un contador, de forma sincronizada
+		//(Accediendo al objeto de forma sincronizada)
+		//synchronized(contador)
 		HiloASincronizado as1=new HiloASincronizado("Hilo ASinc1",contS);
 		HiloASincronizado as2=new HiloASincronizado("Hilo ASinc2",contS);
 		HiloASincronizado as3=new HiloASincronizado("Hilo ASinc3",contS);
 		HiloASincronizado as4=new HiloASincronizado("Hilo ASinc4",contS);
 		HiloASincronizado as5=new HiloASincronizado("Hilo ASinc5",contS);
 		
+		//Hilos que acceden al contador implementando runnable, sin control
 		HiloARunnable aR1=new HiloARunnable("Hilo AR1",contR);
 		HiloARunnable aR2=new HiloARunnable("Hilo AR2",contR);
 		HiloARunnable aR3=new HiloARunnable("Hilo AR3",contR);
 		HiloARunnable aR4=new HiloARunnable("Hilo AR4",contR);
 		HiloARunnable aR5=new HiloARunnable("Hilo AR5",contR);
 		
+		//Hilos que acceden al contador implementando runnable, de forma sincronizada
+		//(Accediendo al objeto de forma sincronizada)
+		//synchronized(contador)
 		HiloASincronizadoRunnable aRS1=new HiloASincronizadoRunnable("Hilo ARS1",contRS);
 		HiloASincronizadoRunnable aRS2=new HiloASincronizadoRunnable("Hilo ARS2",contRS);
 		HiloASincronizadoRunnable aRS3=new HiloASincronizadoRunnable("Hilo ARS3",contRS);

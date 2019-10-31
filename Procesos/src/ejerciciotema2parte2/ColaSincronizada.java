@@ -6,6 +6,8 @@ public class ColaSincronizada {
 	private boolean disponible=false;
 	private String cadena;
 	
+	//Mientras no este disponible (no haya algo en la cola), espera.
+	//Cuando algo llega a la cola, sale del bucle.
 	public synchronized String get() {
 		while(!disponible) {
 			try {
@@ -21,6 +23,9 @@ public class ColaSincronizada {
 		return cadena;
 	}
 	
+	//Mientras este disponible (haya algo en la cola), espera.
+	//Cuando la cola se vacia, sale del bucle, se mete en la cola el siguiente valor, y vuelve
+	//a estar disponible
 	public synchronized void put(String cad) {
 		while(disponible) {
 			try {

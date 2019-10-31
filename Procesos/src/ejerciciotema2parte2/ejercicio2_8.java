@@ -22,11 +22,14 @@ public class ejercicio2_8 {
 		h5.start();
 		
 		//SI NO METEMOS EL SYNCHRONIZED, AUNQUE MAYORMENTE LO HACE BIEN,
-		//ES POSIBLE QUE A VECES, NO SE LLEGUE A LA CANTIDAD NO LLEGUE A LO QUE DEBE LLEGAR.
+		//ES POSIBLE QUE A VECES, NO SE LLEGUE A LA CANTIDAD A LA QUE DEBE LLEGAR.
 		//DEBE LLEGAR A 200, Y EN RARAS OCASIONES, SE LLEGA A 190.
 		
 		//Si simulamos esto a un banco real, con millones de usuarios, no seria raro, que si
-		//no se controla, se pierda datos de los saldos
+		//no se controla, se pierda datos de los saldos. Se puede llegar a perder en este caso, y
+		//solo son cinco usuarios.
+		
+		//Actualmente, el metodo esta sincronizado, por lo que dos hilos no pueden ejecutarlo a la vez.
 	}
 
 }

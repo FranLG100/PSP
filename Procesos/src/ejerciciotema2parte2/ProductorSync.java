@@ -11,7 +11,7 @@ public class ProductorSync extends Thread {
 	}
 	
 	
-	
+	//Va poniendo en la cola un ping o un pong cada segundo
 	public void run() {
 		for (int i = 0; i < 50; i++) {
 			if(i%2==0) {
@@ -19,7 +19,6 @@ public class ProductorSync extends Thread {
 			}else {
 				cola.put("PONG");
 			}
-			
 			//System.out.println(i+" => Productor : "+n+" produce: "+i);
 			try {
 				sleep(1000);

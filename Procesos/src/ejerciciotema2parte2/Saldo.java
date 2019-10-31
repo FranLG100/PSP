@@ -20,6 +20,9 @@ public class Saldo {
 		this.saldo+=cantidad;
 	}
 	
+	//Metodo sincronizado que suma dinero
+	//Si no estuviese sincronizado, podria darse que dos hilos entrasen a la vez
+	//y se distrajese dinero
 	public synchronized void sumarDinero(int cant, String nom) {
 			System.out.println(nom+": SE VA A SUMAR SALDO (ACTUAL ES: "+getSaldo()+")");
 			try {

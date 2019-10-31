@@ -11,7 +11,8 @@ public class Productor extends Thread {
 	}
 	
 	
-	
+	//Produce para la cola
+	//'Pone en la mesa'
 	public void run() {
 		for (int i = 0; i < 5; i++) {
 			cola.put(i);

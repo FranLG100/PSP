@@ -13,6 +13,8 @@ public class Consumidor extends Thread {
 		this.n=n;
 	}
 	
+	//Toma de la cola
+	//'Come de la mesa'
 	public void run() {
 		int valor=0;
 		for (int i = 0; i < 5; i++) {
