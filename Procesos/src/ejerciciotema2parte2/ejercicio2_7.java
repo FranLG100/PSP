@@ -37,6 +37,8 @@ public class ejercicio2_7 {
 		HiloASincronizadoRunnable aRS5=new HiloASincronizadoRunnable("Hilo ARS5",contRS);
 		
 		
+		//COMENTAR LOS BLOQUES QUE NO SE QUIERAN MOSTRAR
+		
 		//PRIMER INTENTO:
 		//No suele salir lo que tiene que salir. No suele llegar a 25000
 		a1.start();
