@@ -1726,7 +1726,7 @@ public class Amadeus {
 		}
 	}
 	
-	public void cuentaPalabras(File file) throws IOException {
+	public int cuentaPalabras(File file) throws IOException {
 		Amadeus amadeus=new Amadeus();
 		ArrayList<String> lineas=new ArrayList<String>();
 		ArrayList<String> palabras=new ArrayList<String>();
@@ -1742,7 +1742,8 @@ public class Amadeus {
 			palabras.addAll(Arrays.asList(s.split("\\s")));
 		}
 		
-		System.out.println(palabras.size());
+		//System.out.println(palabras.size());
+		return palabras.size();
 	}
 	
 	
