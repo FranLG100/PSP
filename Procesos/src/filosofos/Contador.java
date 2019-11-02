@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Contador extends Thread {
 
-	ArrayList<Filosofo> filosofos;
+	ArrayList<Filosofo> filosofos;//
 	
 	public Contador(ArrayList<Filosofo> filosofos) {
 		// TODO Auto-generated constructor stub
