@@ -21,6 +21,7 @@ public class Arbitro {
 			finalizado=true;
 			System.out.println("Jugador "+idJugador+" acerto el numero. \nFIN DEL JUEGO");
 		}else {
+			
 			turno++;
 			if(turno>njugadores)
 				turno=1;
