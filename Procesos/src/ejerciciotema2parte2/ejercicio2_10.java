@@ -10,6 +10,7 @@ public class ejercicio2_10 {
 		ConsumidorSync c=new ConsumidorSync(cola, 1);
 		ConsumidorSync c2=new ConsumidorSync(cola, 2);
 		
+		
 		//El productor produce 'Ping' y 'Pong' de forma alterna.
 		//Un consumidor cogera todos los Ping, y otro, todos los Pong
 		//Ya que se van turnando

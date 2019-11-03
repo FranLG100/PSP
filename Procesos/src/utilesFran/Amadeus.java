@@ -1800,6 +1800,20 @@ public class Amadeus {
 		lector.close();
 	}
 	
+	public ArrayList<Character> obtenerCaracterPorCaracter(File f) throws IOException {
+		ArrayList<Character> caracteres=new ArrayList<Character>();
+		BufferedReader lector = new BufferedReader(new FileReader(f));
+		char c=(char) lector.read();
+		caracteres.add(c);
+		while(c!=(char)(-1)) {
+			//System.out.println(c);
+			c=(char) lector.read();
+			caracteres.add(c);
+		}
+		lector.close();
+		return caracteres;
+	}
+	
 	public static void leerCaracterPorCaracterMayusculas(File f) throws IOException {
 		BufferedReader lector = new BufferedReader(new FileReader(f));
 		char c=(char) lector.read();
