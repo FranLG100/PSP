@@ -1,0 +1,4 @@
+Cola de texto
+probando que funcione correctamente
+parece que funciona
+FIN
