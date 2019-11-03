@@ -66,20 +66,20 @@ public class ejercicio2_7 {
 		
 		//TERCER INTENTO:
 		//Todas las veces que he probado, llega a 25000 sin problemas
-		aR1.run();
-		aR2.run();
-		aR3.run();
-		aR4.run();
-		aR5.run();
+		new Thread(aR1).start();
+		new Thread(aR2).start();
+		new Thread(aR3).start();
+		new Thread(aR4).start();
+		new Thread(aR5).start();
 		
 		
 		//CUARTO INTENTO:
 		//Todas las veces que he probado, llega a 25000 sin problemas
-		aRS1.run();
-		aRS2.run();
-		aRS3.run();
-		aRS4.run();
-		aRS5.run();
+		new Thread(aRS1).start();
+		new Thread(aRS2).start();
+		new Thread(aRS3).start();
+		new Thread(aRS4).start();
+		new Thread(aRS5).start();
 		
 	}
 
