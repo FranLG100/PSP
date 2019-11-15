@@ -15,17 +15,10 @@ public class Ejercicio_3_2 {
 		int puerto=6000;
 		ServerSocket servidor=new ServerSocket(puerto);
 		System.out.println("Escuchando en puerto: "+servidor.getLocalPort());
-		
-		System.out.println("Cliente 1");
-		Socket cliente=new Socket(host,puerto);
-		InetAddress i=cliente.getInetAddress();
-		System.out.println("Puerto local: "+cliente.getLocalPort());
-		System.out.println("Puerto remoto: "+cliente.getPort());
-		System.out.println("Nombre Host/IP: "+cliente.getInetAddress());
-		System.out.println("Host Remoto: "+i.getHostName().toString());
-		System.out.println("IP Host Remoto: "+i.getHostAddress().toString());
-		
-		cliente.close();
+		Socket cliente1=servidor.accept();
+		System.out.println(cliente1.getPort());
+		Socket cliente2=servidor.accept();
+		System.out.println(cliente2.getPort());
 		servidor.close();
 	}
 
