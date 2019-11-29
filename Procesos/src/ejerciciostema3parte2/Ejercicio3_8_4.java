@@ -9,16 +9,13 @@ public class Ejercicio3_8_4 {
 
 		BufferedReader entrada=new BufferedReader(new InputStreamReader(System.in));
 		
-		String host="localhost";
+		InetAddress destino=InetAddress.getLocalHost();
 		int puerto=6000;
 		int numero=0;
 		
 		System.out.println("PROGRAMA CLIENTE INICIADO...");
-		Socket cliente=new Socket(host,puerto);
-		
-		ObjectInputStream numEnt=new ObjectInputStream(cliente.getInputStream());
-		ObjectOutputStream numSal=new ObjectOutputStream(cliente.getOutputStream());
-		
+		DatagramSocket cliente=new DatagramSocket(6001);
+	
 		
 		do {
 			System.out.println("Escriba un número: ");
@@ -26,15 +23,32 @@ public class Ejercicio3_8_4 {
 			
 			Numeros dato=new Numeros(numero, 0, 0);
 			
-			numSal.writeObject(dato);
-			System.out.println("Envio: "+dato.getNumero());
+			ByteArrayOutputStream bs=new ByteArrayOutputStream();
+			ObjectOutputStream out=new ObjectOutputStream(bs);
+			out.writeObject(dato);
+			out.close();
 			
-			dato=(Numeros) numEnt.readObject();
-			System.out.println("Cuadrado: "+dato.getCuadrado()+" --- Cubo: "+dato.getCubo());
+			byte[] mensaje=bs.toByteArray();
+			
+			DatagramPacket envio=new DatagramPacket(mensaje, mensaje.length,destino,puerto);
+			
+			cliente.send(envio);
+			
+			byte[] recibidos=new byte[1024];
+			
+			System.out.println("Esperando datagrama...");
+			DatagramPacket recibo=new DatagramPacket(recibidos,recibidos.length);
+			cliente.receive(recibo);
+
+			ByteArrayInputStream bais=new ByteArrayInputStream(recibidos);
+			ObjectInputStream in=new ObjectInputStream(bais);
+			Numeros n=(Numeros) in.readObject();
+			System.out.println(n.getCuadrado()+" - - - "+n.getCubo());
+			
+			in.close();
+
 		}while(numero>0);
-		
-		numEnt.close();
-		numSal.close();
+
 		cliente.close();
 	}
 
