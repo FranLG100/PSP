@@ -23,14 +23,14 @@ public class TCPObjetoServidor1 {
 		outObjeto.writeObject(per);
 		System.out.println("Envio: "+per.getNombre()+" * "+per.getEdad());
 		
-		ObjectInputStream inObjeto=new ObjectInputStream(cliente.getInputStream());
+		//ObjectInputStream inObjeto=new ObjectInputStream(cliente.getInputStream());
 		
-		Persona dato= (Persona) inObjeto.readObject();
+		//Persona dato= (Persona) inObjeto.readObject();
 		
-		System.out.println("Recibo: "+dato.getNombre()+" * "+dato.getEdad());
+		//System.out.println("Recibo: "+dato.getNombre()+" * "+dato.getEdad());
 		
 		outObjeto.close();
-		inObjeto.close();
+		//inObjeto.close();
 		cliente.close();
 		servidor.close();
 	}

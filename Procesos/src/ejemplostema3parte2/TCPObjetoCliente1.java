@@ -22,13 +22,13 @@ public class TCPObjetoCliente1 {
 		dato.setNombre("Juan Ramos");
 		dato.setEdad(22);
 		
-		ObjectOutputStream perSal=new ObjectOutputStream(cliente.getOutputStream());
+		//ObjectOutputStream perSal=new ObjectOutputStream(cliente.getOutputStream());
 		
-		perSal.writeObject(dato);
-		System.out.println("Envio: "+dato.getNombre()+" * "+dato.getEdad());
+		//perSal.writeObject(dato);
+		//System.out.println("Envio: "+dato.getNombre()+" * "+dato.getEdad());
 		
 		perEnt.close();
-		perSal.close();
+		//perSal.close();
 		cliente.close();
 	}
 
