@@ -30,7 +30,7 @@ public class HiloServidorAdivina extends Thread {
 		Datos datos=new Datos("Adivina un Numero entre 1 y 25", intentos, identificador);
 		
 		if(objeto.seAcabo()) {
-			datos.setCadena("LO SENTIMOS, EL JUEGO HA TERMINADO, HAN ADIVINADO EL Nº");
+			datos.setCadena("LO SENTIMOS, EL JUEGO HA TERMINADO, HAN ADIVINADO EL NUMERO");
 			datos.setJuega(false);
 		}
 		try {

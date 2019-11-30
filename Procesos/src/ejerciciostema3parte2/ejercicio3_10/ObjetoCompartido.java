@@ -30,12 +30,12 @@ public class ObjetoCompartido {
 				cad="Numero demasiado bajo";
 			}
 			if (suNumero==numero) {
-				cad="Jugador "+jugador+" gana, adivinó el número: "+numero;
+				cad="Jugador "+jugador+" gana, adivino el numero: "+numero;
 				acabo=true;
 				ganador=jugador;
 			}
 		}else {
-			cad="Jugador "+ganador+" adivinó el número: "+numero;
+			cad="Jugador "+ganador+" adivino el numero: "+numero;
 		}
 		
 		return cad;

@@ -10,7 +10,7 @@ public class ServidorAdivina {
 		System.out.println("Servidor iniciado...");
 		
 		int numero=(int)(1+25*Math.random());
-		System.out.println("NÚMERO A ADIVINAR=> "+numero);
+		System.out.println("NUMERO A ADIVINAR=> "+numero);
 		
 		ObjetoCompartido objeto=new ObjetoCompartido(numero);
 		int id=0;
