@@ -76,6 +76,7 @@ public class HiloServidor extends Thread{
 			}
 		}
 		
+		System.out.println("FIN CON: "+identificador);
 		
 		try {
 			outObjeto.close();
