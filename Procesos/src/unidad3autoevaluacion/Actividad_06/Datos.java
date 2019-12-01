@@ -6,33 +6,22 @@ public class Datos implements Serializable {
 	String cadena;
 	String cadenaX;
 	String cadenaY;
-	public String getCadenaX() {
-		return cadenaX;
-	}
-
-	public void setCadenaX(String cadenaX) {
-		this.cadenaX = cadenaX;
-	}
-
-	public String getCadenaY() {
-		return cadenaY;
-	}
-
-	public void setCadenaY(String cadenaY) {
-		this.cadenaY = cadenaY;
-	}
-
+	
 	int intentos;
 	int identificador;
 	boolean gana;
 	boolean juega;
+	int premios;
 	
-	public Datos(String cadena, int intentos, int identificador) {
+	
+
+	public Datos(String cadena, int intentos, int identificador, int premios) {
 		this.cadena=cadena;
 		this.intentos=intentos;
 		this.identificador=identificador;
 		this.gana=false;
 		this.juega=true;
+		this.premios=premios;
 	}
 	
 	public Datos() {
@@ -78,6 +67,32 @@ public class Datos implements Serializable {
 	public void setJuega(boolean juega) {
 		this.juega = juega;
 	}
+	
+	public String getCadenaX() {
+		return cadenaX;
+	}
+
+	public void setCadenaX(String cadenaX) {
+		this.cadenaX = cadenaX;
+	}
+
+	public String getCadenaY() {
+		return cadenaY;
+	}
+
+	public void setCadenaY(String cadenaY) {
+		this.cadenaY = cadenaY;
+	}
+
+	public int getPremios() {
+		return premios;
+	}
+
+	public void setPremios(int premios) {
+		this.premios = premios;
+	}
+	
+
 	
 	
 }

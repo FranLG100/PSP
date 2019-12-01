@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 
 import ejerciciostema3parte2.ejercicio3_10.vista.Vista;
 import unidad3autoevaluacion.Actividad_06.JugadorAdivina;
+import unidad3autoevaluacion.Actividad_06.ObjetoCompartido;
 import unidad3autoevaluacion.Actividad_06.vista.VistaPremios;
 
 public class Controlador implements ActionListener, MouseListener {
@@ -24,7 +25,7 @@ public class Controlador implements ActionListener, MouseListener {
 	private boolean primeraVez=false;
 	
 	public enum AccionMVC {
-		__PRUEBA}
+		__PRUEBA, __SALIR}
 	
 	public Controlador(VistaPremios vista, JugadorAdivina jugador) {
 		this.vista = vista;
@@ -47,10 +48,15 @@ public class Controlador implements ActionListener, MouseListener {
 		this.vista.btnAdivinar.setActionCommand("__PRUEBA");
 		this.vista.btnAdivinar.addActionListener(this);
 		
+		this.vista.btnSalir.setActionCommand("__SALIR");
+		this.vista.btnSalir.addActionListener(this);
+		
 		jugador.Conectar();
 		this.vista.campoID.setText(Integer.toString(jugador.getIdentificador()));
 		this.vista.campoIntentos.setText("0");
-		this.vista.campoResultado.setText("Adivina un numero entre 1 y 25");
+		//System.out.println(jugador.getDatos());
+		this.vista.campoResultado.setText("Prueba suerte en nuestro tablero de la fortuna");
+		this.vista.campoPremios.setText(Integer.toString(jugador.getPremios()));
 	}
 
 	@Override
@@ -65,6 +71,7 @@ public class Controlador implements ActionListener, MouseListener {
 					primeraVez=true;
 					this.vista.campoResultado.setText(jugador.getCadena());
 					this.vista.campoIntentos.setText(Integer.toString(jugador.getDatos().getIntentos()));
+					this.vista.campoPremios.setText(Integer.toString(jugador.getDatos().getPremios()));
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -73,6 +80,15 @@ public class Controlador implements ActionListener, MouseListener {
 					e1.printStackTrace();
 				}
 			}
+			break;
+		case __SALIR:
+			try {
+				jugador.Cerrar();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			System.exit(0);
 			break;
 		}
 	}

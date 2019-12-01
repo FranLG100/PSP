@@ -10,11 +10,13 @@ public class HiloServidorAdivina extends Thread {
 	ObjetoCompartido objeto;
 	int identificador;
 	int intentos=0;
+	int premios;
 	
-	public HiloServidorAdivina(Socket s, ObjetoCompartido objeto, int id){
+	public HiloServidorAdivina(Socket s, ObjetoCompartido objeto, int id, int premios){
 		this.socket=s;
 		this.objeto=objeto;
 		this.identificador=id;
+		this.premios=premios;
 		try {
 			fsalida=new ObjectOutputStream(socket.getOutputStream());
 			fentrada=new ObjectInputStream(socket.getInputStream());
@@ -27,7 +29,8 @@ public class HiloServidorAdivina extends Thread {
 	public void run() {
 		System.out.println("=>Cliente conectado: "+identificador);
 		
-		Datos datos=new Datos("Adivina un Numero entre 1 y 25", intentos, identificador);
+		//System.out.println("Premios del hilo: "+objeto.getPremios());
+		Datos datos=new Datos("Pruebe suerte en nuestro tablero de la fortuna", intentos, identificador, premios);
 		
 		if(objeto.seAcabo()) {
 			datos.setCadena("LO SENTIMOS, EL JUEGO HA TERMINADO, HAN ADIVINADO EL NUMERO");
@@ -45,10 +48,12 @@ public class HiloServidorAdivina extends Thread {
 		while(!objeto.seAcabo() || !(datos.getIntentos()==5)) {
 			int numecli=0;
 			int numecli2=0;
+			int premios=0;
 			try {
 				Datos d=(Datos) fentrada.readObject();
 				numecli=Integer.parseInt(d.getCadenaX())-1;
 				numecli2=Integer.parseInt(d.getCadenaY())-1;
+				premios=d.getPremios();
 			}catch (IOException e) {
 				System.out.println("Error en el hilo al leer del jugador: "+identificador);
 				break;
@@ -62,8 +67,8 @@ public class HiloServidorAdivina extends Thread {
 			
 			String cad=objeto.nuevaJugada(identificador, numecli, numecli2);
 			intentos++;
-			
-			datos=new Datos(cad,intentos,identificador);
+			premios=objeto.getPremios();
+			datos=new Datos(cad,intentos,identificador, premios);
 			
 			if(objeto.seAcabo()) {
 				datos.setJuega(false);

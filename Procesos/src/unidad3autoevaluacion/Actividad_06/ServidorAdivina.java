@@ -33,7 +33,7 @@ public class ServidorAdivina {
 			Socket cliente= new Socket();
 			cliente=servidor.accept();
 			id++;
-			HiloServidorAdivina hilo=new HiloServidorAdivina(cliente, objeto, id);
+			HiloServidorAdivina hilo=new HiloServidorAdivina(cliente, objeto, id,objeto.getPremios());
 			hilo.start();
 		}
 	}
