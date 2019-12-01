@@ -22,8 +22,9 @@ public class JugadorAdivina {
 	String host;
 	Socket cliente;
 	Datos datos;
+	boolean juega;
 	
-	public JugadorAdivina() throws UnknownHostException, IOException {
+	public JugadorAdivina() throws UnknownHostException, IOException, ClassNotFoundException {
 		this.identificador=0;
 		this.cadena=new String[2];
 		this.host="localhost";
@@ -31,6 +32,7 @@ public class JugadorAdivina {
 		this.cliente=new Socket(host,puerto);
 		this.fsalida= new ObjectOutputStream(cliente.getOutputStream());
 		this.fentrada= new ObjectInputStream(cliente.getInputStream());
+		//this.datos=(Datos) fentrada.readObject();
 	}
 
 	public void Conectar() throws UnknownHostException, IOException, ClassNotFoundException {
@@ -38,7 +40,7 @@ public class JugadorAdivina {
 		identificador=datos.getIdentificador();
 		System.out.println("Id jugador: "+identificador);
 		setIdentificador(identificador);
-		
+		juega=datos.isJuega();
 		System.out.println(datos.getCadena());
 		
 		//if(!datos.isJuega())
@@ -106,6 +108,14 @@ public class JugadorAdivina {
 
 	public void setCadena(String[] cadena) {
 		this.cadena = cadena;
+	}
+
+	public boolean isJuega() {
+		return juega;
+	}
+
+	public void setJuega(boolean juega) {
+		this.juega = juega;
 	}
 
 	public static void main(String[] args) throws UnknownHostException, IOException, ClassNotFoundException {

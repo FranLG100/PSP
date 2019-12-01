@@ -56,6 +56,9 @@ public class Controlador implements ActionListener, MouseListener {
 		this.vista.campoIntentos.setText("0");
 		//System.out.println(jugador.getDatos());
 		this.vista.campoResultado.setText("Adivina nuestro numero");
+		if(!jugador.isJuega()) {
+			this.vista.btnAdivinar.setEnabled(false);
+		}
 	}
 
 	@Override
@@ -73,6 +76,9 @@ public class Controlador implements ActionListener, MouseListener {
 					this.vista.campoResultado.setText(cadena+"\n"+jugador.getCadena()[0]);
 					this.vista.campoResultado2.setText(cadena2+"\n"+jugador.getCadena()[1]);
 					this.vista.campoIntentos.setText(Integer.toString(jugador.getDatos().getIntentos()));
+					if(!jugador.getDatos().isJuega()) {
+						this.vista.btnAdivinar.setEnabled(false);
+					}
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
