@@ -54,6 +54,36 @@ public class ObjetoCompartido {
 				//acabo=true;
 				//ganador=jugador;
 			}
+			if(primerNumero==2 && segundoNumero==3) {
+				if(pDinero) {
+					cad="Ya se ha repartido ese premio";
+				}else {
+					cad="Jugador "+jugador+" se lleva "+tablero[2][3];
+					premios=premios-1;
+					pDinero=true;
+					ComprobarAciertos(jugador, cad);
+				}
+			}
+			if(primerNumero==1 && segundoNumero==2) {
+				if(pEntradas) {
+					cad="Ya se ha repartido ese premio";
+				}else {
+					cad="Jugador "+jugador+" se lleva "+tablero[1][2];
+					premios=premios-1;
+					pEntradas=true;
+					ComprobarAciertos(jugador, cad);
+				}
+			}
+			if(primerNumero==2 && segundoNumero==0) {
+				if(pMasaje) {
+					cad="Ya se ha repartido ese premio";
+				}else {
+					cad="Jugador "+jugador+" se lleva "+tablero[2][0];
+					premios=premios-1;
+					pMasaje=true;
+					ComprobarAciertos(jugador, cad);
+				}
+			}
 		}else {
 			cad="Jugador "+ganador+" se lleva : "+tablero[0][0];
 		}

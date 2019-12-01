@@ -57,21 +57,36 @@ public class Controlador implements ActionListener, MouseListener {
 		//System.out.println(jugador.getDatos());
 		this.vista.campoResultado.setText("Prueba suerte en nuestro tablero de la fortuna");
 		this.vista.campoPremios.setText(Integer.toString(jugador.getPremios()));
+		if(jugador.getPremios()==0) {
+			this.vista.campoResultado.setText("Todos los premios han sido repartidos");
+			this.vista.btnAdivinar.setEnabled(false);
+		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (AccionMVC.valueOf(e.getActionCommand())) {
 		case __PRUEBA:
+			if(jugador.getPremios()==0) {
+				String cadena=this.vista.campoResultado.getText();
+				this.vista.campoResultado.setText(cadena+"\n"+"Todos los premios han sido repartidos");
+				this.vista.btnAdivinar.setEnabled(false);
+			}
 			if(primeraVez && jugador.getDatos().getIntentos()>4) {
 				JOptionPane.showMessageDialog(null, "Ha alcanzado el maximo numero de intentos");
 			}else {
 				try {
 					jugador.EnviarNumero(this.vista.campoAdivinarX.getText(),this.vista.campoAdivinarY.getText());
 					primeraVez=true;
-					this.vista.campoResultado.setText(jugador.getCadena());
+					String cadena=this.vista.campoResultado.getText();
+					this.vista.campoResultado.setText(cadena+"\n"+jugador.getCadena());
 					this.vista.campoIntentos.setText(Integer.toString(jugador.getDatos().getIntentos()));
 					this.vista.campoPremios.setText(Integer.toString(jugador.getDatos().getPremios()));
+					if(jugador.getDatos().getPremios()==0) {
+						cadena=this.vista.campoResultado.getText();
+						this.vista.campoResultado.setText(cadena+"\n"+"Todos los premios han sido repartidos");
+						this.vista.btnAdivinar.setEnabled(false);
+				}
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
