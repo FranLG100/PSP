@@ -11,6 +11,7 @@ import java.net.Socket;
 public class Actividad_01_1 {
 
 	public static void main(String[] args) throws IOException {
+		//Deberia funcionar
 		//SERVIDOR
 		
 				//Abrimos el servidor, puerto 6000
