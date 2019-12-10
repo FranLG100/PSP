@@ -28,6 +28,6 @@ public class Hilo_E03 extends Thread {
 		}
 		t_fin=System.currentTimeMillis();
 		long tiempoTotal=t_fin-t_comienzo;
-		System.out.println("El archivo tiene "+nPalabras+" palabras. Ha tardado "+tiempoTotal+"ms");
+		System.out.println("El archivo "+archivo.getName()+" tiene "+nPalabras+" palabras. Ha tardado "+tiempoTotal+"ms");
 	}
 }

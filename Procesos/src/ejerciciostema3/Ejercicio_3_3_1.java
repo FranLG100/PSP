@@ -27,9 +27,9 @@ public class Ejercicio_3_3_1 {
 		OutputStream salida=null;
 		salida= clienteConectado.getOutputStream();
 		DataOutputStream flujoSalida=new DataOutputStream(salida);
-		
 		//Lo enviamos.
-		flujoSalida.writeUTF("ESTO ES UNA PRUEBA ESCRIBIENDO EN MAYÚSCULAS");
+		flujoSalida.writeUTF("ESTO ES UNA PRUEBA ESCRIBIENDO EN MAYUSCULAS");
+		
 		
 		//Ahora, preparamos la llegada de un mensaje de la parte del cliente
 		InputStream entrada=null;
@@ -40,7 +40,7 @@ public class Ejercicio_3_3_1 {
 		//minusculas
 		System.out.println("Recibiendo del CLIENTE:  \n\t"+flujoEntrada.readUTF());
 		
-		//Y cerramos los distintos flujos en este orden específico.
+		//Y cerramos los distintos flujos en este orden especúƒico.
 		//Cerrando, por ultimo, el servidor
 		entrada.close();
 		flujoEntrada.close();

@@ -13,12 +13,12 @@ public class Ejercicio_3_6_1 {
 
 		//SERVIDOR
 		
-		//En esta ocasión, trabajaremos recibiendo datagramas
+		//En esta ocasion, trabajaremos recibiendo datagramas
 		
 		//En el puerto 12345
 		DatagramSocket socket=new DatagramSocket(12345);
 		
-		//El servidor esperará el datagrama
+		//El servidor esperara el datagrama
 		System.out.println("Servidor esperando datagrama...");
 		DatagramPacket recibo;
 		String mensaje="";
@@ -49,7 +49,7 @@ public class Ejercicio_3_6_1 {
 			//Hasta que recibamos un asterisco
 		}while(!mensaje.equalsIgnoreCase("*"));
 		
-		//Tras eso, cerramos conexión
+		//Tras eso, cerramos conexion
 		System.out.println("Cerrando conexion...");
 		socket.close();
 	}

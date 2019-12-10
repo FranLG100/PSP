@@ -33,7 +33,7 @@ public class UDPclienteEjemplo2 {
 		byte[] hh=recibo.getData();
 		int numero=hh[0];
 		
-		System.out.println("Recibo Nº de caracteres que son a=> "+numero);
+		System.out.println("Recibo Numero de caracteres que son a=> "+numero);
 		
 		clientSocket.close();
 	}

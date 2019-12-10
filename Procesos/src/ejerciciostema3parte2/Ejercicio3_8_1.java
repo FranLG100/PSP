@@ -29,6 +29,7 @@ public class Ejercicio3_8_1 {
 		System.out.println(persona.getNombre());
 		System.out.println(persona.getEdad());
 		
+		int puertoEnvio=recibo.getPort();
 		in.close();
 		
 		
@@ -46,7 +47,7 @@ public class Ejercicio3_8_1 {
 		InetAddress destino=InetAddress.getLocalHost();
 		int port=12346;
 		
-		DatagramPacket envio=new DatagramPacket(mensaje, mensaje.length,destino,port);
+		DatagramPacket envio=new DatagramPacket(mensaje, mensaje.length,destino,puertoEnvio);
 		
 
 		socket.send(envio);

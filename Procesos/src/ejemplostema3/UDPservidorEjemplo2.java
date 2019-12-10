@@ -29,7 +29,7 @@ public class UDPservidorEjemplo2 {
 		InetAddress IPOrigen=recibo.getAddress();
 		int puerto=recibo.getPort();
 		
-		System.out.println("Enviando número de apariciones de la letra a=> "+contador);
+		System.out.println("Enviando numero de apariciones de la letra a=> "+contador);
 		byte b=(byte)contador;
 		byte[] enviados=new byte[1024];
 		enviados[0]=b;

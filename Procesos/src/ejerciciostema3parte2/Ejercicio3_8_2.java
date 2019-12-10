@@ -21,7 +21,7 @@ public class Ejercicio3_8_2 {
 		byte[] mensaje=bs.toByteArray();
 		
 		DatagramPacket envio=new DatagramPacket(mensaje, mensaje.length,destino,port);
-		DatagramSocket socket=new DatagramSocket(12346);
+		DatagramSocket socket=new DatagramSocket();
 		
 		socket.send(envio);
 		

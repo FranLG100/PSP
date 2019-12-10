@@ -15,10 +15,10 @@ public class Ejercicio_3_5_1 {
 
 		//SERVIDOR
 		
-		//En este caso, el servidor ira atendiendo clientes y diciendoles qué numero
-		//de clientes son. Cuanto lleguen al maximo, cerrará.
+		//En este caso, el servidor ira atendiendo clientes y diciendoles que numero
+		//de clientes son. Cuanto lleguen al maximo, cerrara.
 		
-		//En este caso, atenderá hasta tres conexiones.
+		//En este caso, atendera hasta tres conexiones.
 		int numeroPuerto=6000;
 		int nClientes=0;
 		int maxConexiones=3;
@@ -37,8 +37,8 @@ public class Ejercicio_3_5_1 {
 			salida= clienteConectado.getOutputStream();
 			DataOutputStream flujoSalida=new DataOutputStream(salida);
 			
-			//Diciendole en qué orden ha entrado
-			flujoSalida.writeUTF("Eres el clientes nº "+nClientes);
+			//Diciendole en que orden ha entrado
+			flujoSalida.writeUTF("Eres el clientes numero "+nClientes);
 			
 			//Y cerramos los flujos
 			salida.close();

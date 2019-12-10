@@ -19,7 +19,7 @@ public class Ejercicio_3_4_2 {
 		BufferedReader lector=new BufferedReader(new InputStreamReader(System.in));
 		
 		//Le pedimos al usuario que introduzca un numero
-		System.out.println("Introduzca un número");
+		System.out.println("Introduzca un numero");
 		int numero=Integer.parseInt(lector.readLine());
 		
 		//Nos conectamos al servidor
