@@ -11,6 +11,7 @@ public class Ejercicio3_7_1 {
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 
+		//
 		int numeroPuerto=6000;
 		ServerSocket servidor=new ServerSocket(numeroPuerto);
 		
