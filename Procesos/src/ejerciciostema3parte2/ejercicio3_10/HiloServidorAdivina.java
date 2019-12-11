@@ -27,8 +27,10 @@ public class HiloServidorAdivina extends Thread {
 	public void run() {
 		System.out.println("=>Cliente conectado: "+identificador);
 		
+		//Creamos el objeto Datos
 		Datos datos=new Datos("Adivina un Numero entre 1 y 25", intentos, identificador);
 		
+		//Mientras no se adivine el numero, se sigue jugando
 		if(objeto.seAcabo()) {
 			datos.setCadena("LO SENTIMOS, EL JUEGO HA TERMINADO, HAN ADIVINADO EL NUMERO");
 			datos.setJuega(false);
@@ -42,6 +44,8 @@ public class HiloServidorAdivina extends Thread {
 			return;
 		}
 		
+		//Se ve mejor que en el comentario anterior. Mientras el juego NO haya acabado
+		//ni se llegue a 5 intentos, el juego continua
 		while(!objeto.seAcabo() || !(datos.getIntentos()==5)) {
 			int numecli=0;
 			try {
@@ -58,6 +62,7 @@ public class HiloServidorAdivina extends Thread {
 				break;
 			}
 			
+			//Se obtiene la nueva jugada del jugador (su id, y el numero que prueba a adivinar)
 			String cad=objeto.nuevaJugada(identificador, numecli);
 			intentos++;
 			

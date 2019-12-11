@@ -20,6 +20,8 @@ public class ObjetoCompartido {
 		return ganador;
 	}
 	
+	//Metodo que recibe id del jugador y su numero
+	//Le da pistas de como se esta acercando
 	public synchronized String nuevaJugada(int jugador, int suNumero) {
 		String cad="";
 		if(!seAcabo()) {
@@ -29,11 +31,13 @@ public class ObjetoCompartido {
 			if(suNumero<numero) {
 				cad="Numero demasiado bajo";
 			}
+			//Si coincide, gana la partida
 			if (suNumero==numero) {
 				cad="Jugador "+jugador+" gana, adivino el numero: "+numero;
 				acabo=true;
 				ganador=jugador;
 			}
+		//Pero puede darse el caso de que otro jugador se le adelante
 		}else {
 			cad="Jugador "+ganador+" adivino el numero: "+numero;
 		}

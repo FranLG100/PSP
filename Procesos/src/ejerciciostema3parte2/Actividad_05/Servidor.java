@@ -10,6 +10,7 @@ public class Servidor {
 		servidor=new ServerSocket(6000);
 		System.out.println("Servidor iniciado...");
 		
+		//El servidor se limita a servir clientes a traves de hilos
 		while(true) {
 			Socket cliente=new Socket();
 			cliente = servidor.accept();

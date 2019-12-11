@@ -19,6 +19,7 @@ public class HiloServidor extends Thread{
 		String cadena="";
 		System.out.println("COMUNICO CON: "+socket.toString());
 		
+		//Hasta que reciba un asterisco, seguira leyendo mensajes y pasandolos a mayusculas
 		while(!cadena.trim().equals("*")) {
 			try {
 				cadena=fentrada.readLine();

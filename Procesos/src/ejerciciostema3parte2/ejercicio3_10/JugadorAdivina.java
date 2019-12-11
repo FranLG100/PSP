@@ -33,6 +33,7 @@ public class JugadorAdivina {
 		this.fentrada= new ObjectInputStream(cliente.getInputStream());
 	}
 
+	//Metodo para conectarse al Servidor (y recibir id)
 	public void Conectar() throws UnknownHostException, IOException, ClassNotFoundException {
 		Datos datos=(Datos) fentrada.readObject();
 		identificador=datos.getIdentificador();
@@ -45,6 +46,7 @@ public class JugadorAdivina {
 			cadena="*";
 	}
 	
+	//Metodo para jugar un numero
 	public void EnviarNumero(String cadena2) throws IOException, ClassNotFoundException {
 		System.out.println(cadena2);
 		Datos d=new Datos();
@@ -61,6 +63,7 @@ public class JugadorAdivina {
 		this.cadena=datos.getCadena();
 	}
 	
+	//Metodo para controlar que lo que se inserta es un numero
 	public boolean validarCadena(String cadena) {
 		boolean valor=false;
 		try {

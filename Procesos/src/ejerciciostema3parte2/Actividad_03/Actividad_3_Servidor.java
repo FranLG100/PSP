@@ -18,6 +18,8 @@ public class Actividad_3_Servidor {
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 
+		//SERVIDOR
+		//Creamos los objetos necesarios para el ejercicio
 		Curso c1=new Curso("C01", "Desarrollo Aplicaciones Multiplataforma");
 		Curso c2=new Curso("C02", "Realizacion Audiovisual");
 		Curso c3=new Curso("C03", "Literatura Castellana");
@@ -37,15 +39,17 @@ public class Actividad_3_Servidor {
 		alumnos.put(a5.getIdalumno(), a5);
 		
 		String paquete="";
+		//Nuestro puerto
 		DatagramSocket socket=new DatagramSocket(12345);
 		byte[] recibidos=new byte[1024];
 		
 		
 		//RECIBO
+		//Hasta recibir un asterisco
 		do {
 			System.out.println("Esperando datagrama...");
 			DatagramPacket recibo=new DatagramPacket(recibidos,recibidos.length);
-			
+			//Recibimos el datagrama
 			socket.receive(recibo);
 			paquete=new String(recibo.getData()).trim();
 			System.out.println("Recibido: "+paquete);
@@ -53,12 +57,15 @@ public class Actividad_3_Servidor {
 			
 			
 			//ENVIO
+			//Comprobamos si exista esa id para obtener ese objeto de nuestro HashMap
 			if(alumnos.containsKey(paquete)) {
 				a=alumnos.get(paquete);
+			//Si no, le devolvemos un mensaje de 'No existe'
 			}else {
 				c=new Curso("0","No existe");
 				a=new Alumno("0", "No existe", c, 0);
 			}
+			//Empaquetamos el objeto
 			ByteArrayOutputStream bs=new ByteArrayOutputStream();
 			ObjectOutputStream out=new ObjectOutputStream(bs);
 			out.writeObject(a);
@@ -67,14 +74,16 @@ public class Actividad_3_Servidor {
 			byte[] mensaje=bs.toByteArray();
 			
 			InetAddress destino=InetAddress.getLocalHost();
+			//Puerto del cliente
 			int port=12346;
 			
 			DatagramPacket envio=new DatagramPacket(mensaje, mensaje.length,destino,port);
 			
-	
+			//Enviamos el objeto que el cliente quiere consultar
 			socket.send(envio);
 		}while(!paquete.trim().contains("*"));
 		
+		//Cerramos
 		socket.close();
 	}
 

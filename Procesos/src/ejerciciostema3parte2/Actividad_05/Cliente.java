@@ -23,18 +23,21 @@ public class Cliente {
 		in= new BufferedReader(new InputStreamReader(System.in));
 	}
 	
+	//Metodo para enviar una cadena de texto
 	public void enviar(String cad) throws IOException {
 		//System.out.println("Introduce una cadena: ");
 		//cadena=in.readLine();
 		fsalida.println(cad);
 	}
 	
+	//Metodo para recibir una cadena de texto del servidor (ya en mayusculas)
 	public String recibir() throws IOException {
 		eco=fentrada.readLine();
 		System.out.println(" => ECO: "+eco);
 		return eco;
 	}
 	
+	//Metodo para cerrar la conexion
 	public void cerrar() throws IOException {
 		fsalida.println("*");
 		fsalida.close();
