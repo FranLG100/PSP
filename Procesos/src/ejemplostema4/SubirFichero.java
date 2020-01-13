@@ -61,6 +61,7 @@ public class SubirFichero {
 				BufferedInputStream in=new BufferedInputStream(new FileInputStream(ruta));
 				cliente.storeFile(archivo,in);
 				in.close();
+				//
 				cliente.logout();
 				cliente.disconnect();
 				
