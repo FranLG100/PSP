@@ -177,6 +177,31 @@ public class Ejercicio4_03 extends JFrame{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
+					String nombreCarpeta=JOptionPane.showInputDialog(null,"Introduce nombre de directorio","carpeta");
+					if(!(nombreCarpeta==null)) {
+						String directorio=direcSelec;
+						if(!direcSelec.contentEquals("/"))
+							directorio=directorio+"/";
+						
+						directorio+=nombreCarpeta.trim();
+						
+						try {
+							if(cliente.makeDirectory(directorio)) {
+								String m=nombreCarpeta.trim()+" => Se ha creado correctamtente";
+								JOptionPane.showMessageDialog(null, m);
+								campo.setText(m);
+								cliente.changeWorkingDirectory(direcSelec);
+								
+								FTPFile[] ff2= cliente.listFiles();
+								llenarLista(ff2,direcSelec);
+							}else {
+								JOptionPane.showMessageDialog(null, "No ha podido crearse el directorio");
+							}
+						} catch (IOException e2) {
+							// TODO: handle exception
+							e2.printStackTrace();
+						}
+					}
 					
 				}
 			});
@@ -203,7 +228,31 @@ public class Ejercicio4_03 extends JFrame{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					
+					String nombreCarpeta=JOptionPane.showInputDialog(null,"Introduce nombre de directorio a eliminar","carpeta");
+					if(!(nombreCarpeta==null)) {
+						String directorio=direcSelec;
+						if(!direcSelec.contentEquals("/"))
+							directorio=directorio+"/";
+						
+						directorio+=nombreCarpeta.trim();
+						
+						try {
+							if(cliente.removeDirectory(directorio)) {
+								String m=nombreCarpeta.trim()+" => Se ha eliminado correctamtente";
+								JOptionPane.showMessageDialog(null, m);
+								campo.setText(m);
+								cliente.changeWorkingDirectory(direcSelec);
+								
+								FTPFile[] ff2= cliente.listFiles();
+								llenarLista(ff2,direcSelec);
+							}else {
+								JOptionPane.showMessageDialog(null, "No ha podido eliminarse el directorio");
+							}
+						} catch (IOException e2) {
+							// TODO: handle exception
+							e2.printStackTrace();
+						}
+					}
 				}
 			});
 			
@@ -293,7 +342,13 @@ public class Ejercicio4_03 extends JFrame{
 			botonBorrar.setBounds(370, 165, 150, 30);
 			add(botonBorrar);
 			
-			botonSalir.setBounds(370, 215, 150, 30);
+			botonCreaDir.setBounds(370, 215, 150, 30);
+			add(botonCreaDir);
+			
+			botonDelDir.setBounds(370, 265, 150, 30);
+			add(botonDelDir);
+			
+			botonSalir.setBounds(370, 315, 150, 30);
 			add(botonSalir);
 			
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
