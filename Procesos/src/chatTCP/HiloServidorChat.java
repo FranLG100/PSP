@@ -20,8 +20,10 @@ public class HiloServidorChat extends Thread{
 	}
 	
 	public void run() {
+		//Obtenemos el numero de conexiones actuales
 		System.out.println("NUMERO DE CONEXIONES ACTUALES: "+comun.getACTUALES());
 		
+		//Obtenemos y mostramos los mensajes a todos los participantes del chat
 		String texto=comun.getMensajes();
 		EnviarMensajesaTodos(texto);
 		

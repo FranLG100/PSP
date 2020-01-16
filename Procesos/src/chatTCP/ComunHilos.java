@@ -10,11 +10,13 @@ public class ComunHilos {
 	Socket tabla[]=new Socket[MAXIMO];
 	String mensajes;
 	
+	//Constructor
 	public ComunHilos(int maximo, int actuales, int conexiones, Socket[] tabla) {
 		// TODO Auto-generated constructor stub
 		MAXIMO=maximo;
 		ACTUALES=actuales;
 		CONEXIONES=conexiones;
+		//Tabla de mensajes
 		this.tabla=tabla;
 		mensajes="";
 	}

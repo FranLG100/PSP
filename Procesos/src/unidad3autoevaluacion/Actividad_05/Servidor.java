@@ -10,6 +10,7 @@ public class Servidor {
 		servidor=new ServerSocket(6000);
 		System.out.println("Servidor iniciado...");
 		
+		//Vamos despachando clientes a medida que van entrando
 		while(true) {
 			Socket cliente=new Socket();
 			cliente = servidor.accept();

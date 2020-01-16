@@ -10,18 +10,25 @@ public class ClienteChat extends JFrame implements ActionListener, Runnable  {
 	private static final long serialVersionUID=1L;
 	Socket socket=null;
 	
+	//Para la entrada y salida de datos
 	DataInputStream fentrada;
 	DataOutputStream fsalida;
 	
+	//Nombre del usuario del chat
 	String nombre;
+	//Campo en el cual introduciremos el nombre
 	static JTextField mensaje=new JTextField();
 	
+	//Para hacer scroll por los mensajes
 	private JScrollPane scrollpane1;
+	//Area en el cual saldran los mensajes
 	static JTextArea textarea1;
+	//Botones
 	JButton botonEnviar=new JButton("Enviar");
 	JButton botonSalir=new JButton("Salir");
 	boolean repetir=true;
 	
+	//Montamos el chat
 	public ClienteChat(Socket s, String nombre) {
 		// TODO Auto-generated constructor stub
 		super("CONEXION DEL CLIENTE CHAT: "+nombre);
@@ -85,6 +92,7 @@ public class ClienteChat extends JFrame implements ActionListener, Runnable  {
 		
 	}
 
+	//Implementamos los botones.
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -112,9 +120,12 @@ public class ClienteChat extends JFrame implements ActionListener, Runnable  {
 		}
 	}
 	
+	
 	public static void main(String args[]) {
+		//Puerto 
 		int puerto=44444;
 		Socket s=null;
+		//Introducimos un nombre
 		String nombre=JOptionPane.showInputDialog("Introduzca un nick: ");
 		
 		if(nombre.trim().length()==0) {
@@ -122,6 +133,7 @@ public class ClienteChat extends JFrame implements ActionListener, Runnable  {
 			return;
 		}
 		
+		//Le 'damos' un hilo al usuario que se conecta, y seguimos esperando la conexion de mas clientes
 		try {
 			s=new Socket("localhost",puerto);
 			ClienteChat cliente=new ClienteChat(s, nombre);

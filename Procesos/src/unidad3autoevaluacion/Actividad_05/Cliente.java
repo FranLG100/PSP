@@ -14,6 +14,8 @@ public class Cliente {
 	String cadena;
 	String eco;
 	
+	//En su creacion, el cliente se conecta al puerto 6000 del localhost, y preparamos los bufer
+	//de entrada y salida de datos
 	public Cliente() throws UnknownHostException, IOException {
 		host="localhost";
 		puerto=6000;
