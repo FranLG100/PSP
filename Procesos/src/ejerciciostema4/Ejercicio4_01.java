@@ -18,8 +18,8 @@ public class Ejercicio4_01 {
 		//String servFTP="ftp.rediris.es";
 		System.out.println("Nos conectamos a: "+servFTP);
 		//usuario y clave del usuario con permisos asignados a una carpeta de nuestro servidos
-		String usuario="usuario";
-		String clave="usuario";
+		String usuario="usuario1";
+		String clave="usu1";
 		
 		String directorio="/Procesos/";
 		
