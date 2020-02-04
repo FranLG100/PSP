@@ -23,10 +23,11 @@ public class Ej2 {
 
 		//Seguramente, no funcione fuera de mi local porque tiene datos muy especificos
 		//pero seguimos hacia adelante
-		Amadeus amadeus=new Amadeus();
-		String usuario;
-		int usuariosCorrectos=0;
+		Amadeus amadeus=new Amadeus();//Esta es mi libreria personal de utilidades
+		String usuario; //Usuario del servidor FTP, usuario1, usuario2 o usuario3
+		int usuariosCorrectos=0; //numero de veces que se logean correctamente
 		do {
+			//Se les pide los datos a los usuarios
 			System.out.println("Introduzca usuario");
 			usuario=amadeus.recibeTexto();
 			
@@ -38,67 +39,68 @@ public class Ej2 {
 			String servFTP="localhost";
 			//String servFTP="ftp.rediris.es";
 			System.out.println("Nos conectamos a: "+servFTP);
-			//usuario y clave del usuario con permisos asignados a una carpeta de nuestro servidos
 			
 			
+			//Guardamos esto, nos sera de utilidad
 			String directorio="/LOG/";
 			
 			try {
 				//nos conectamos
 				cliente.connect(servFTP);
-				//Se le indica al cliente a que puerto debe conectarse, en caso de ser activo
-				//seria aleatorio, pero mayor de 1024
+				
 				cliente.enterLocalPassiveMode();
 				
 				//Comprobamos si el login es correcto
-				//si no lo es, desconectamos
+				//si no lo es, seguimos, pero no contamos un login exitoso
 				boolean login=cliente.login(usuario, clave);
 				
 				if(login) {
 					System.out.println("Login correcto");
 				
-				//imprimimos el directorio actual
-				System.out.println("Directorio actual: "+cliente.printWorkingDirectory());
-				//hacemos un array de archivos (los listamos)
-				FTPFile[] files=cliente.listFiles();
-				System.out.println("Ficheros en el directorio actual: "+files.length);
-				
-				//Y de tipos (para imprimir)
-				String tipos[]= {"Fichero","Directorio","Enlace simb."};
-				
-				//imprimimos los nombres de los archivos y sus tipos
-				for (int i = 0; i < files.length; i++) {
-					System.out.println("\t"+files[i].getName()+" => "+tipos[files[i].getType()]);
-				}
-				
-				//volvemos a cambiar de directorio
-				//y volvemos a listar
-				cliente.changeWorkingDirectory(directorio);
-				System.out.println("Directorio actual: "+cliente.printWorkingDirectory());
-				files=cliente.listFiles();
-				System.out.println("Ficheros en el directorio actual: "+files.length);
-				
-				String text="\nHora de conexion: "+LocalDateTime.now();
-				try (ByteArrayInputStream local = new ByteArrayInputStream(text.getBytes("UTF-8"))) {
-				    cliente.appendFile("LOG.txt", local);
-				} catch (IOException ex) {
-				    throw new RuntimeException("Uh-oh", ex);
-				}
+					//imprimimos el directorio actual
+					System.out.println("Directorio actual: "+cliente.printWorkingDirectory());
+					//hacemos un array de archivos (los listamos)
+					FTPFile[] files=cliente.listFiles();
+					System.out.println("Ficheros en el directorio actual: "+files.length);
+					
+					//Y de tipos (para imprimir)
+					String tipos[]= {"Fichero","Directorio","Enlace simb."};
+					
+					//imprimimos los nombres de los archivos y sus tipos
+					for (int i = 0; i < files.length; i++) {
+						System.out.println("\t"+files[i].getName()+" => "+tipos[files[i].getType()]);
+					}
+					
+					//volvemos a cambiar de directorio
+					//y volvemos a listar
+					cliente.changeWorkingDirectory(directorio);
+					System.out.println("Directorio actual: "+cliente.printWorkingDirectory());
+					files=cliente.listFiles();
+					System.out.println("Ficheros en el directorio actual: "+files.length);
+					
+					//Ahora, aprovechamos para escribir en el LOG.txt personal de cada usuario, a que hora entro
+					String text="\nHora de conexion: "+LocalDateTime.now();
+					try (ByteArrayInputStream local = new ByteArrayInputStream(text.getBytes("UTF-8"))) {
+					    cliente.appendFile("LOG.txt", local);
+					} catch (IOException ex) {
+					    throw new RuntimeException("Uh-oh", ex);
+					}
 				
 				/*for (int i = 0; i < files.length; i++) {
 					System.out.println("\t"+files[i].getName()+" => "+tipos[files[i].getType()]);
 				}*/
 				
 				//nos deslogamos
-				boolean logout=cliente.logout();
-				
-				if(logout)
-					System.out.println("Logout del servidor FTP");
-				else
-					System.out.println("Error al hacer logout");
-				cliente.disconnect();
-				System.out.println("Desconectado");
-				usuariosCorrectos++;
+					boolean logout=cliente.logout();
+					
+					if(logout)
+						System.out.println("Logout del servidor FTP");
+					else
+						System.out.println("Error al hacer logout");
+					cliente.disconnect();
+					System.out.println("Desconectado");
+					//Sumamos uno al numero de logins correctos
+					usuariosCorrectos++;
 				}else {
 					System.out.println("Login incorrecto");
 					cliente.disconnect();
@@ -110,13 +112,14 @@ public class Ej2 {
 		}while(!usuario.equalsIgnoreCase("*"));
 		
 		
+		//Comenzamos el proceso de enviarnos un correo para ver el numero
+		//de logins correctos que se han sucedido en la sesion.
 		
-		
-AuthenticatingSMTPClient client=new AuthenticatingSMTPClient();
+		AuthenticatingSMTPClient client=new AuthenticatingSMTPClient();
 		
 		String server="smtp.gmail.com";
 		String username="fralg100@gmail.com";
-		String password="sdfafvzd";
+		String password="canoncien100";
 		int puerto=587;
 		String remitente="fralg100@gmail.com";
 		
@@ -126,6 +129,7 @@ AuthenticatingSMTPClient client=new AuthenticatingSMTPClient();
 			kmf.init(null,null);
 			KeyManager km=kmf.getKeyManagers()[0];
 			
+			//Nos conectamos al servidor de correo y al puerto correspondiente.
 			client.connect(server,puerto);
 			System.out.println("1 - "+client.getReplyString());
 			client.setKeyManager(km);
@@ -140,10 +144,12 @@ AuthenticatingSMTPClient client=new AuthenticatingSMTPClient();
 				client.ehlo(server);
 				System.out.println("2 - "+client.getReplyString());
 				
+				//Comienza la negociacion SSL TLS
 				if(client.execTLS()) {
 					System.out.println("3 - "+client.getReplyString());
 					
 					if(client.auth(AuthenticatingSMTPClient.AUTH_METHOD.PLAIN, username, password)) {
+						//Nos lo enviamos a nosotros mismos
 						System.out.println("4 - "+client.getReplyString());
 						String destino1="fralg100@gmail.com";
 						String asunto="Numero de conexiones correctas";
