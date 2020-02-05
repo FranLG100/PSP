@@ -1,0 +1,4 @@
+Si cambio una letra, lo que parece que ocurre es que me salta una excepcion
+al ejecutar el ejemplo 6.
+El fichero esta corrupto (aunque lo vuelva a dejar como estaba).
+Si lo ejecuto sin haber modificado la salida del ejemplo 5, funciona correctamente.
