@@ -69,9 +69,22 @@ public class clienteFicheros extends JFrame implements Runnable{
 		listaDirec.addListSelectionListener(new ListSelectionListener() {
 			
 			@Override
-			public void valueChanged(ListSelectionEvent e) {
+			public void valueChanged(ListSelectionEvent lse) {
 				// TODO Auto-generated method stub
-				
+				if(lse.getValueIsAdjusting()) {
+					ficheroSelec="";
+					ficherocompleto="";
+					
+					nodo=(EstructuraFicheros) listaDirec.getSelectedValue();
+					if(nodo.isDir()) {
+						campo.setText("FUNCION NO IMPLEMENTADA");
+					}else {
+						ficheroSelec=nodo.getName();
+						ficherocompleto=nodo.getPath();
+						campo.setText("FICHERO seleccionado: "+ficheroSelec);
+						System.out.println("FICHERO seleccionado: "+ficheroSelec);
+					}
+				}
 			}
 		});
 		
@@ -80,7 +93,13 @@ public class clienteFicheros extends JFrame implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				try {
+					socket.close();
+					System.exit(0);
+				} catch (Exception e2) {
+					// TODO: handle exception
+					e2.printStackTrace();
+				}
 			}
 		});
 		
