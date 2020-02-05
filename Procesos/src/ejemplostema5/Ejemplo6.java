@@ -10,7 +10,7 @@ public class Ejemplo6 {
 		// TODO Auto-generated method stub
 
 		try {
-			FileInputStream fileout =new FileInputStream("DATOS.txt");
+			FileInputStream fileout =new FileInputStream("DATOS.dat");
 			ObjectInputStream dataOS=new ObjectInputStream(fileout);
 			Object o=dataOS.readObject();
 			

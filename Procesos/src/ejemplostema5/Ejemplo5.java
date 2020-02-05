@@ -12,7 +12,7 @@ public class Ejemplo5 {
 		// TODO Auto-generated method stub
 
 		try {
-			FileOutputStream fileout=new FileOutputStream("DATOS.txt");
+			FileOutputStream fileout=new FileOutputStream("DATOS.dat");
 			ObjectOutputStream dataOS= new ObjectOutputStream(fileout);
 			
 			MessageDigest md=MessageDigest.getInstance("SHA-256");
