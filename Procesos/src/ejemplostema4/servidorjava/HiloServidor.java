@@ -35,6 +35,13 @@ public class HiloServidor extends Thread{
 					EnviarFichero(fichero);
 				}
 				
+				if(peticion instanceof PideActualizacion) {
+					System.out.println("Que nos piden que actualicemos");
+					
+					EstructuraFicheros n=new EstructuraFicheros(this.NF.getPath());
+					outObjeto.writeObject(n);
+				}
+				
 				if(peticion instanceof EnviaFichero) {
 					EnviaFichero fic=(EnviaFichero) peticion;
 					File d=new File(fic.getDirectorio());

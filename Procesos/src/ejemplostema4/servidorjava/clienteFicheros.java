@@ -42,9 +42,9 @@ public class clienteFicheros extends JFrame implements Runnable{
 	
 	JButton botonCargar=new JButton("Subir fichero");
 	JButton botonDescargar=new JButton("Descargar fichero");
-	JButton botonBorrar=new JButton("Eliminar fichero");
-	JButton botonCreaDir=new JButton("Crear carpeta");
-	JButton botonDelDir=new JButton("Eliminar carpeta");
+	JButton botonActualizar=new JButton("Actualizar");
+	//JButton botonCreaDir=new JButton("Crear carpeta");
+	//JButton botonDelDir=new JButton("Eliminar carpeta");
 	JButton botonSalir=new JButton("Salir");
 	static JList listaDirec=new JList();
 	
@@ -131,6 +131,38 @@ public class clienteFicheros extends JFrame implements Runnable{
 			}
 		});
 		
+		botonActualizar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				PideActualizacion pido=new PideActualizacion("Pruebas");
+				
+				try {
+					outObjeto.writeObject(pido);
+					
+					nodo=(EstructuraFicheros) inObjeto.readObject();
+					EstructuraFicheros[] lista=nodo.getLista();
+					direcSelec=nodo.getPath();
+					llenarLista(lista,nodo.getNumeFich());
+					campo2.setText("Numero de ficheros en el directorio: "+lista.length);
+					/*FileOutputStream fos=new FileOutputStream(ficheroSelec);
+					
+					Object obtengo=inObjeto.readObject();
+					
+					if(obtengo instanceof ObtieneFichero) {
+						ObtieneFichero fic=(ObtieneFichero) obtengo;
+						fos.write(fic.getContenidoFichero());
+						fos.close();
+						JOptionPane.showMessageDialog(null, "FICHERO DESCARGADO");
+					}*/
+				} catch (Exception e2) {
+					// TODO: handle exception
+					e2.printStackTrace();
+				}
+			}
+		});
+		
 		botonCargar.addActionListener(new ActionListener() {
 			
 			@Override
@@ -188,8 +220,8 @@ public class clienteFicheros extends JFrame implements Runnable{
 		botonDescargar.setBounds(370, 115, 150, 30);
 		add(botonDescargar);
 		
-		/*botonBorrar.setBounds(370, 165, 150, 30);
-		add(botonBorrar);
+		botonActualizar.setBounds(370, 165, 150, 30);
+		add(botonActualizar);/*
 		
 		botonCreaDir.setBounds(370, 215, 150, 30);
 		add(botonCreaDir);
