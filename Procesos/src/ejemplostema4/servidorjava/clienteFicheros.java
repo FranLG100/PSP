@@ -77,6 +77,24 @@ public class clienteFicheros extends JFrame implements Runnable{
 					nodo=(EstructuraFicheros) listaDirec.getSelectedValue();
 					if(nodo.isDir()) {
 						campo.setText("FUNCION NO IMPLEMENTADA");
+						System.out.println("FUNCION NO IMPLEMENTADA");
+						System.out.println(nodo.getPath());
+						System.out.println(nodo.getName());
+						PidePath pido=new PidePath(nodo.getPath());
+						
+						try {
+							outObjeto.writeObject(pido);
+							
+							nodo=(EstructuraFicheros) inObjeto.readObject();
+							EstructuraFicheros[] lista=nodo.getLista();
+							direcSelec=nodo.getPath();
+							llenarLista(lista,nodo.getNumeFich());
+							campo2.setText("Numero de ficheros en el directorio: "+lista.length);
+							
+						} catch (Exception e2) {
+							// TODO: handle exception
+							e2.printStackTrace();
+						}
 					}else {
 						ficheroSelec=nodo.getName();
 						ficherocompleto=nodo.getPath();

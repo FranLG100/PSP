@@ -37,8 +37,18 @@ public class HiloServidor extends Thread{
 				
 				if(peticion instanceof PideActualizacion) {
 					System.out.println("Que nos piden que actualicemos");
-					
+					PideActualizacion pa=(PideActualizacion) peticion;
 					EstructuraFicheros n=new EstructuraFicheros(this.NF.getPath());
+					System.out.println(this.NF.getPath());
+					outObjeto.writeObject(n);
+				}
+				
+				if(peticion instanceof PidePath) {
+					System.out.println("Que nos piden que cambiemos el directorio");
+					PidePath pp=(PidePath) peticion;
+					EstructuraFicheros n=new EstructuraFicheros(pp.getPathDirectorio());
+					System.out.println(pp.getPathDirectorio());
+					
 					outObjeto.writeObject(n);
 				}
 				
