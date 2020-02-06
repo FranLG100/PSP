@@ -48,6 +48,7 @@ public class clienteFicheros extends JFrame implements Runnable{
 	JButton botonSalir=new JButton("Salir");
 	static JList listaDirec=new JList();
 	
+	static String direcActual="";
 	static String direcSelec="";
 	static String ficheroSelec="";
 	static String ficherocompleto="";
@@ -225,6 +226,43 @@ public class clienteFicheros extends JFrame implements Runnable{
 			}
 		});
 		
+		botonVolver.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+
+					System.out.println("DIR SEL: "+direcSelec);
+					if(direcSelec.equals(Raiz.getPath()))
+						return;
+					
+					String s=direcSelec;
+					String[] r=s.split("\\\\");
+					String p="";
+					for (int i = 0; i < r.length-1; i++) {
+						System.out.println(r[i]);
+						p+=r[i]+"\\";
+					}
+					p=p.substring(0,p.length()-1);
+					System.out.println(p);
+					
+					PidePath pido=new PidePath(p);
+					try {
+						outObjeto.writeObject(pido);
+						
+						nodo=(EstructuraFicheros) inObjeto.readObject();
+						EstructuraFicheros[] lista=nodo.getLista();
+						direcSelec=nodo.getPath();
+						llenarLista(lista,nodo.getNumeFich());
+						campo2.setText("Numero de ficheros en el directorio: "+lista.length);
+						
+					} catch (Exception e2) {
+						// TODO: handle exception
+						e2.printStackTrace();
+					}
+			}
+		});
+		
 		listaDirec.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		JScrollPane barraDesplazamiento=new JScrollPane(listaDirec);
 		barraDesplazamiento.setPreferredSize(new Dimension(335,420));
@@ -278,6 +316,7 @@ public class clienteFicheros extends JFrame implements Runnable{
 			Raiz=(EstructuraFicheros) inObjeto.readObject();
 			EstructuraFicheros[] nodos=Raiz.getLista();
 			direcSelec=Raiz.getPath();
+			direcActual=Raiz.getPath();
 			llenarLista(nodos, Raiz.getNumeFich());
 			cab3.setText("RAIZ: "+direcSelec);
 			cab.setText("CONECTADO AL SERVIDOR DE FICHEROS");
