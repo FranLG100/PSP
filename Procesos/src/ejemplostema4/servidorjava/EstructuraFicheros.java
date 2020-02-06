@@ -45,6 +45,10 @@ public class EstructuraFicheros implements Serializable {
 		return path;
 	}
 	
+	public void setPath(String path) {
+		this.path=path;
+	}
+	
 	public EstructuraFicheros[] getLista() {
 		return lista;
 	}

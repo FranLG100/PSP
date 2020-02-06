@@ -48,7 +48,7 @@ public class HiloServidor extends Thread{
 					PidePath pp=(PidePath) peticion;
 					EstructuraFicheros n=new EstructuraFicheros(pp.getPathDirectorio());
 					System.out.println(pp.getPathDirectorio());
-					
+					NF.setPath(pp.getPathDirectorio());
 					outObjeto.writeObject(n);
 				}
 				
