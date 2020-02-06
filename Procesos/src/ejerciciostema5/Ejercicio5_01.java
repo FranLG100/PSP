@@ -13,17 +13,20 @@ public class Ejercicio5_01 {
 		MessageDigest md;
 		Amadeus amadeus=new Amadeus();
 		
+		//Primera parte del ejercicio, con MD5
 		System.out.println("PRUEBA CON MD5");
 		try {
-			md= MessageDigest.getInstance("MD5");
-			String texto="Esto es un texto plano";
-			String clave="Clave de cifrado";
+			md= MessageDigest.getInstance("MD5"); //Escogemos el algoritmo a implementar
+			String texto="Esto es un texto plano"; //Texto a cifrar
+			String clave="Clave de cifrado"; //Clave de cifrado
 			
 			byte dataBytes[]= texto.getBytes();
+			
+			//Y lo ciframos
 			md.update(dataBytes);
 			
 			//byte resumen[]=md.digest();
-			byte resumen[]=md.digest(clave.getBytes());
+			byte resumen[]=md.digest(clave.getBytes()); //Con la clave
 			
 			System.out.println("Mensaje original: "+texto);
 			System.out.println("Numero de bytes: "+md.getDigestLength());
