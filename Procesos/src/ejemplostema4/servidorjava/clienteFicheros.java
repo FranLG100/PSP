@@ -7,7 +7,11 @@ import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -15,12 +19,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
+import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -108,7 +107,27 @@ public class clienteFicheros extends JFrame implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				if(ficherocompleto.equals(""))
+					return;
+				PideFichero pido=new PideFichero(ficherocompleto);
 				
+				try {
+					outObjeto.writeObject(pido);
+					
+					FileOutputStream fos=new FileOutputStream(ficheroSelec);
+					
+					Object obtengo=inObjeto.readObject();
+					
+					if(obtengo instanceof ObtieneFichero) {
+						ObtieneFichero fic=(ObtieneFichero) obtengo;
+						fos.write(fic.getContenidoFichero());
+						fos.close();
+						JOptionPane.showMessageDialog(null, "FICHERO DESCARGADO");
+					}
+				} catch (Exception e2) {
+					// TODO: handle exception
+					e2.printStackTrace();
+				}
 			}
 		});
 		
@@ -117,7 +136,42 @@ public class clienteFicheros extends JFrame implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				JFileChooser f= new JFileChooser();
+				f.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				f.setDialogTitle("Selecciona el Fichero a SUBIR AL SERVIDOR");
+				int returnVal=f.showDialog(f, "Cargar");
+				if(returnVal==JFileChooser.APPROVE_OPTION) {
+					File file=f.getSelectedFile();
+					String archivo=file.getAbsolutePath();
+					String nombreArchivo=file.getName();
+					BufferedInputStream in;
+					
+					try {
+						in=new BufferedInputStream(new FileInputStream(archivo));
+						long bytes = file.length();
+						byte[] buff=new byte[(int) bytes];
+						int i,j=0;
+						while((i=in.read())!=-1) {
+							buff[j]=(byte)i;
+							j++;
+						}
+						in.close();
+						
+						Object ff=new EnviaFichero(buff, nombreArchivo, direcSelec);
+						
+						outObjeto.writeObject(ff);
+						JOptionPane.showMessageDialog(null, "FICHERO CARGADO");
+						
+						nodo=(EstructuraFicheros) inObjeto.readObject();
+						EstructuraFicheros[] lista=nodo.getLista();
+						direcSelec=nodo.getPath();
+						llenarLista(lista,nodo.getNumeFich());
+						campo2.setText("Numero de ficheros en el directorio: "+lista.length);
+					} catch (Exception e2) {
+						// TODO: handle exception
+						e2.printStackTrace();
+					}
+				}
 			}
 		});
 		
