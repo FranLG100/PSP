@@ -43,7 +43,7 @@ public class clienteFicheros extends JFrame implements Runnable{
 	JButton botonCargar=new JButton("Subir fichero");
 	JButton botonDescargar=new JButton("Descargar fichero");
 	JButton botonActualizar=new JButton("Actualizar");
-	//JButton botonCreaDir=new JButton("Crear carpeta");
+	JButton botonVolver=new JButton("Volver");
 	//JButton botonDelDir=new JButton("Eliminar carpeta");
 	JButton botonSalir=new JButton("Salir");
 	static JList listaDirec=new JList();
@@ -239,10 +239,10 @@ public class clienteFicheros extends JFrame implements Runnable{
 		add(botonDescargar);
 		
 		botonActualizar.setBounds(370, 165, 150, 30);
-		add(botonActualizar);/*
+		add(botonActualizar);
 		
-		botonCreaDir.setBounds(370, 215, 150, 30);
-		add(botonCreaDir);
+		botonVolver.setBounds(370, 215, 150, 30);
+		add(botonVolver);/*
 		
 		botonDelDir.setBounds(370, 265, 150, 30);
 		add(botonDelDir);*/
