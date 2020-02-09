@@ -38,6 +38,7 @@ import org.apache.commons.net.smtp.SimpleSMTPHeader;
 
 public class Actividad_02 extends JFrame{
 
+	//puerto 587
 	//Toda la parte visual
 	//para el login, es usuario, usuario pass y user.
 	//Pero vamos, que no va a funcionar fuera de mi local
